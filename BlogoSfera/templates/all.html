@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+        <div class="menu">
+            <div class="login-wrapper">
+                <a class="logout" href="{{url_for('logout')}}">Wyloguj</a>
+            </div>
+            <h1 id="menuLabel"><a href="/">BlogoSfera</a></h1>
+            <div class="navbar">
+                <a href="/all">Przeglądaj</a>
+                <a href="{{url_for('add')}}">Dodaj</a>
+                <a href="/mypage">Moje wpisy</a>
+            </div>
+        </div>
+
+    <div class="main">
+        <!--  flash messages for html -->
+            {% for message in get_flashed_messages() %}
+              <div class="alert-error"> {{ message }}</div>
+            {% endfor %}
+        <!-- end of flash messages for html -->
+
+        {% if data %}
+            {% for wpis in data %}
+                <div class="post">
+                    <div>
+                        <h3 id="title">{{wpis.tytul}}</h3>
+                    </div>
+                    <p>
+                        {{ wpis.tresc }}
+                    </p>
+                    <div class="signature-wrapper">
+                        <h4 id="signature">{{ wpis.autor }}, <i>{{ wpis.data }}</i></h4>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2> Brak wpisów na BlogoSferze </h2>
+        {% endif %}
+    </div>
+</body>
+</html>

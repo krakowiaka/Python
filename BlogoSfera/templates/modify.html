@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Modyfikowanie posta</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="menu">
+            <div class="login-wrapper">
+                <a class="logout" href="{{url_for('logout')}}">Wyloguj</a>
+            </div>
+            <a class="logout" href="{{url_for('logout')}}">Wyloguj</a>
+            <h1 id="menuLabel"><a href="/">BlogoSfera</a></h1>
+            <div class="navbar">
+                <a href="/all">Przeglądaj</a>
+                <a href="{{url_for('add')}}">Dodaj</a>
+                <a href="/mypage">Moje wpisy</a>
+            </div>
+    </div>
+    <div class = "main">
+        <!--  flash messages for html -->
+        {% for message in get_flashed_messages() %}
+          <div class="alert-error"> {{ message }}</div>
+        {% endfor %}
+        <!-- end of flash messages for html -->
+        <div class="post">
+                <h3 id="new-post-header">Modyfikuj post</h3>
+                <form class="new-post" method="post" id="new-post-form">
+                    <label>Tytul</label>
+                    <input class="title-input" type="text" name="title" value="{{ updatePost.tytul }}">
+                    <label>Tresc</label>
+                    <textarea class="post-input" name="content" form="new-post-form" >{{ updatePost.tresc }}</textarea>
+                    <div class="button-holder">
+                        <button type="submit" class="btn-submit">Zapisz zmiany</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</body>
