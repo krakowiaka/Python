@@ -1,4 +1,3 @@
-# PAINT 300444 290292 300465
 
 ## Przygotowanie aplikacji:
 
